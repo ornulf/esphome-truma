@@ -337,7 +337,9 @@ void LinBusListener::read_lin_frame_() {
     TRUMA_LOGV_ISR(log_msg);
 #endif  // ESPHOME_LOG_HAS_VERBOSE
 
-    if (this->current_data_valid && (message_from_master || this->current_PID_ == LIN_PID_STATUS_2 ||
+        if (this->current_data_valid && this->current_PID_ < 16 && this->current_data_count_ == 9) {
+      for (uint8_t i = 0; i < 8; i++) this->raw_frames[this->current_PID_][i] = this->current_data_[i];
+    }      if (this->current_data_valid && (message_from_master || this->current_PID_ == LIN_PID_STATUS_2 ||
                                      this->current_PID_ == LIN_PID_COMMAND_STATUS ||
                                      this->current_PID_ == LIN_PID_HEATER_STATUS_LEGACY)) {
       QUEUE_LIN_MSG lin_msg;
