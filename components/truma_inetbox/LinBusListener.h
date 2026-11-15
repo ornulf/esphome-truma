@@ -53,7 +53,7 @@ class LinBusListener : public PollingComponent, public uart::UARTDevice {
 
   void process_lin_msg_queue(TickType_t xTicksToWait);
   void process_log_queue(TickType_t xTicksToWait);
-
+  uint8_t raw_frames[16][8] = {};
  protected:
   LIN_CHECKSUM lin_checksum_ = LIN_CHECKSUM::LIN_CHECKSUM_VERSION_2;
   GPIOPin *cs_pin_ = nullptr;
