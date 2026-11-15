@@ -303,6 +303,7 @@ const uint8_t *TrumaiNetBoxApp::lin_multiframe_received(const uint8_t *message, 
     if (*return_len > 0 && *return_len < TRUMA_TRANSFER_LEN) {
       *return_len = TRUMA_TRANSFER_LEN;
     }
+           response[4] = (uint8_t) this->company_; 
     return response;
   }
 
